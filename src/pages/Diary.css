@@ -11,9 +11,14 @@
   font-size: 2.5rem;
 }
 
+.diary-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
 .add-entry-btn {
-  display: block;
-  margin: 0 auto 2rem;
   padding: 0.8rem 1.5rem;
   background-color: #ff6b6b;
   color: white;
@@ -26,6 +31,21 @@
 
 .add-entry-btn:hover {
   background-color: #ff5252;
+}
+
+.reset-btn {
+  padding: 0.8rem 1.5rem;
+  background-color: #4dabf7;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.reset-btn:hover {
+  background-color: #339af0;
 }
 
 .new-entry-form {
@@ -101,6 +121,26 @@
   margin-bottom: 10px;
 }
 
+.entry-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.edit-entry-btn {
+  background-color: #4dabf7;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.edit-entry-btn:hover {
+  background-color: #339af0;
+}
+
 .delete-entry-btn {
   background-color: #ff6b6b;
   color: white;
@@ -147,6 +187,60 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.date-input {
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  color: #ff6b6b;
+  font-weight: bold;
+}
+
+.title-input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.content-input {
+  width: 100%;
+  min-height: 150px;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  resize: vertical;
+}
+
+.image-input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.save-entry-btn {
+  background-color: #51cf66;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.save-entry-btn:hover {
+  background-color: #40c057;
 }
 
 @media (max-width: 768px) {
