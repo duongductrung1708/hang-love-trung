@@ -1,6 +1,49 @@
+import { useEffect, useRef } from "react";
 import "./LoveStory.css";
 
 function LoveStory() {
+  const timelineRef = useRef(null);
+
+  useEffect(() => {
+    const timeline = timelineRef.current;
+    
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("fade-in");
+          } else {
+            entry.target.classList.remove("fade-in");
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: "0px 0px -100px 0px"
+      }
+    );
+
+    // Observe the timeline container
+    if (timeline) {
+      observer.observe(timeline);
+    }
+
+    // Observe all timeline items
+    const timelineItems = document.querySelectorAll(".timeline-item");
+    timelineItems.forEach((item) => {
+      observer.observe(item);
+    });
+
+    return () => {
+      if (timeline) {
+        observer.unobserve(timeline);
+      }
+      timelineItems.forEach((item) => {
+        observer.unobserve(item);
+      });
+    };
+  }, []);
+
   const timelineEvents = [
     {
       date: "28/03/2024",
@@ -31,7 +74,7 @@ function LoveStory() {
   return (
     <div className="love-story">
       <h1>Chuyện Tình Của Chúng Mình</h1>
-      <div className="timeline">
+      <div className="timeline" ref={timelineRef}>
         {timelineEvents.map((event, index) => (
           <div key={index} className="timeline-item">
             <div className="timeline-content">
