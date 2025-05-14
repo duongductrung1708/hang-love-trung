@@ -1,0 +1,108 @@
+.special-dates {
+  min-height: calc(100vh - 70px);
+  padding: 2rem;
+  background: linear-gradient(135deg, #fff5f5 0%, #ffe3e3 100%);
+}
+
+.special-dates h1 {
+  text-align: center;
+  color: #ff6b6b;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+}
+
+.days-together {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.days-together h2 {
+  color: #2d3436;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.counter {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #ff6b6b;
+}
+
+.countdowns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.countdown-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.countdown-card:hover {
+  transform: translateY(-5px);
+}
+
+.countdown-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.countdown-card h3 {
+  color: #2d3436;
+  margin-bottom: 1.5rem;
+  font-size: 1.3rem;
+}
+
+.countdown-timer {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.time-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.time {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ff6b6b;
+  background: #fff5f5;
+  padding: 0.5rem;
+  border-radius: 8px;
+  min-width: 60px;
+}
+
+.label {
+  color: #636e72;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .special-dates {
+    padding: 1rem;
+  }
+
+  .countdowns {
+    grid-template-columns: 1fr;
+  }
+
+  .countdown-timer {
+    flex-wrap: wrap;
+  }
+
+  .time {
+    font-size: 1.5rem;
+    min-width: 50px;
+  }
+} 

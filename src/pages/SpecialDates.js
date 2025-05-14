@@ -1,0 +1,149 @@
+import { useEffect, useState, useMemo } from "react";
+import "./SpecialDates.css";
+
+function SpecialDates() {
+  const startDate = useMemo(() => new Date("2024-03-28"), []);
+  const [daysTogether, setDaysTogether] = useState(0);
+
+  const specialDates = useMemo(() => [
+    {
+      title: "Kỷ niệm 100 ngày",
+      date: new Date("2024-07-06"),
+      icon: "💝"
+    },
+    {
+      title: "Kỷ niệm 1 tháng",
+      date: new Date("2024-04-28"),
+      icon: "🎉"
+    },
+    {
+      title: "Kỷ niệm 6 tháng",
+      date: new Date("2024-09-28"),
+      icon: "🎊"
+    },
+    {
+      title: "Kỷ niệm 1 năm",
+      date: new Date("2025-03-28"),
+      icon: "💑"
+    },
+    {
+      title: "Kỷ niệm 1 năm rưỡi",
+      date: new Date("2025-09-28"),
+      icon: "💖"
+    },
+    {
+      title: "Kỷ niệm 2 năm",
+      date: new Date("2026-03-28"),
+      icon: "💕"
+    },
+    {
+      title: "Kỷ niệm 2 năm rưỡi",
+      date: new Date("2026-09-28"),
+      icon: "💗"
+    },
+    {
+      title: "Kỷ niệm 3 năm",
+      date: new Date("2027-03-28"),
+      icon: "💓"
+    },
+    {
+      title: "Kỷ niệm 3 năm rưỡi",
+      date: new Date("2027-09-28"),
+      icon: "💘"
+    }
+  ], []);
+
+  useEffect(() => {
+    const calculateDays = () => {
+      const today = new Date();
+      const diffTime = Math.abs(today - startDate);
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      setDaysTogether(diffDays);
+    };
+
+    calculateDays();
+    const interval = setInterval(calculateDays, 86400000); // Update every day
+    return () => clearInterval(interval);
+  }, [startDate]);
+
+  const calculateTimeLeft = (targetDate) => {
+    const now = new Date();
+    const difference = targetDate - now;
+    
+    if (difference <= 0) {
+      return {
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0
+      };
+    }
+
+    const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+    return { days, hours, minutes, seconds };
+  };
+
+  const [timeLeft, setTimeLeft] = useState(
+    specialDates.reduce((acc, date) => ({
+      ...acc,
+      [date.title]: calculateTimeLeft(date.date)
+    }), {})
+  );
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft(
+        specialDates.reduce((acc, date) => ({
+          ...acc,
+          [date.title]: calculateTimeLeft(date.date)
+        }), {})
+      );
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [specialDates]);
+
+  return (
+    <div className="special-dates">
+      <h1>Ngày Đặc Biệt</h1>
+
+      <div className="days-together">
+        <h2>Đã yêu nhau được</h2>
+        <div className="counter">{daysTogether} ngày</div>
+      </div>
+
+      <div className="countdowns">
+        {specialDates.map((date) => (
+          <div key={date.title} className="countdown-card">
+            <div className="countdown-icon">{date.icon}</div>
+            <h3>{date.title}</h3>
+            <div className="countdown-timer">
+              <div className="time-block">
+                <span className="time">{timeLeft[date.title]?.days || 0}</span>
+                <span className="label">Ngày</span>
+              </div>
+              <div className="time-block">
+                <span className="time">{timeLeft[date.title]?.hours || 0}</span>
+                <span className="label">Giờ</span>
+              </div>
+              <div className="time-block">
+                <span className="time">{timeLeft[date.title]?.minutes || 0}</span>
+                <span className="label">Phút</span>
+              </div>
+              <div className="time-block">
+                <span className="time">{timeLeft[date.title]?.seconds || 0}</span>
+                <span className="label">Giây</span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default SpecialDates; 
