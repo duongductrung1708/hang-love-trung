@@ -1,6 +1,8 @@
 import { useEffect, useRef } from "react";
 import "./LoveStory.css";
 
+import hoahangvatrung from "../assets/hoahangvatrung.jpg";
+
 function LoveStory() {
   const timelineRef = useRef(null);
 
@@ -49,7 +51,7 @@ function LoveStory() {
       date: "28/03/2024",
       title: "Ngày quen nhau",
       description: "Hôm đó tình cờ chúng mình gặp nhau. Ai ngờ từ giây phút ấy, em bước vào đời anh như một điều diệu kỳ…",
-      image: "/assets/first-meet-placeholder.jpg"
+      image: hoahangvatrung
     },
     {
       date: "Coming soon",
