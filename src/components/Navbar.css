@@ -1,16 +1,21 @@
 .navbar {
-  background-color: #ff6b6b;
+  background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
   padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-brand a {
   color: white;
-  font-size: 1.5rem;
   text-decoration: none;
+  font-size: 1.5rem;
   font-weight: bold;
 }
 
@@ -22,7 +27,7 @@
 .navbar-links a {
   color: white;
   text-decoration: none;
-  font-size: 1rem;
+  font-weight: 500;
   transition: color 0.3s ease;
 }
 
@@ -30,16 +35,56 @@
   color: #ffe3e3;
 }
 
+.menu-button {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 1002;
+}
+
 @media (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    padding: 1rem;
+  .menu-button {
+    display: block;
   }
 
   .navbar-links {
-    margin-top: 1rem;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: 250px;
+    background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
+    flex-direction: column;
+    padding: 2rem;
+    transition: right 0.3s ease;
+    z-index: 1002;
+  }
+
+  .navbar-links.active {
+    right: 0;
+  }
+
+  .navbar-links a {
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+
+  .overlay.active {
+    display: block;
   }
 } 

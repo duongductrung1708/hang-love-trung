@@ -2,53 +2,53 @@ import { useEffect, useState, useMemo } from "react";
 import "./SpecialDates.css";
 
 function SpecialDates() {
-  const startDate = useMemo(() => new Date("2024-03-28"), []);
+  const startDate = useMemo(() => new Date("2025-02-06"), []);
   const [daysTogether, setDaysTogether] = useState(0);
 
   const specialDates = useMemo(() => [
     {
-      title: "Kỷ niệm 100 ngày",
-      date: new Date("2024-07-06"),
-      icon: "💝"
-    },
-    {
       title: "Kỷ niệm 1 tháng",
-      date: new Date("2024-04-28"),
+      date: new Date("2025-03-06"),
       icon: "🎉"
     },
     {
+      title: "Kỷ niệm 100 ngày",
+      date: new Date("2025-05-17"),
+      icon: "💝"
+    },
+    {
       title: "Kỷ niệm 6 tháng",
-      date: new Date("2024-09-28"),
+      date: new Date("2025-08-06"),
       icon: "🎊"
     },
     {
       title: "Kỷ niệm 1 năm",
-      date: new Date("2025-03-28"),
+      date: new Date("2026-02-06"),
       icon: "💑"
     },
     {
       title: "Kỷ niệm 1 năm rưỡi",
-      date: new Date("2025-09-28"),
+      date: new Date("2026-08-06"),
       icon: "💖"
     },
     {
       title: "Kỷ niệm 2 năm",
-      date: new Date("2026-03-28"),
+      date: new Date("2027-02-06"),
       icon: "💕"
     },
     {
       title: "Kỷ niệm 2 năm rưỡi",
-      date: new Date("2026-09-28"),
+      date: new Date("2027-08-06"),
       icon: "💗"
     },
     {
       title: "Kỷ niệm 3 năm",
-      date: new Date("2027-03-28"),
+      date: new Date("2028-02-06"),
       icon: "💓"
     },
     {
       title: "Kỷ niệm 3 năm rưỡi",
-      date: new Date("2027-09-28"),
+      date: new Date("2028-08-06"),
       icon: "💘"
     }
   ], []);

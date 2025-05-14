@@ -1,26 +1,23 @@
 import { useState } from "react";
 import "./Diary.css";
 
+import chuoitiktok from "../assets/chuoitiktok.jpg";
+import chuoi300 from "../assets/chuoi300.jpg";
+
 function Diary() {
   const [diaryEntries, setDiaryEntries] = useState([
     {
-      date: "10/04/2024",
-      title: "Lần đầu nắm tay",
-      content: "Cảm giác hôm ấy vẫn còn nguyên – bàn tay nhỏ xíu của em, nhưng khiến tim anh rung lên như lần đầu nghe bản nhạc yêu thích…",
-      image: "/assets/holding-hands-placeholder.jpg"
+      date: "01/07/2024",
+      title: "Bắt đầu tạo chuỗi tiktok",
+      content: "Hôm nay là ngày đầu tiên anh bắt đầu tạo chuỗi tiktok cho em. Mỗi ngày một câu chuyện, một kỷ niệm, một khoảnh khắc đặc biệt giữa chúng ta. Anh muốn lưu giữ lại tất cả những điều tuyệt vời này, để sau này khi nhìn lại, chúng ta sẽ thấy được hành trình yêu nhau của mình thật đẹp và ý nghĩa. Em là nguồn cảm hứng vô tận cho những video của anh...",
+      image: chuoitiktok
     },
     {
-      date: "20/04/2024",
-      title: "Gửi em một bài thơ",
-      content: "Những vần thơ anh viết cho em...",
-      image: "/assets/poem-placeholder.jpg"
+      date: "09/05/2025",
+      title: "Chuỗi tiktok 300",
+      content: "300 ngày, 300 video, 300 câu chuyện về chúng ta. Mỗi video là một kỷ niệm, một nụ cười, một giọt nước mắt, một khoảnh khắc đặc biệt. Anh vẫn nhớ như in ngày đầu tiên bắt đầu chuỗi video này, và giờ đây, khi đạt đến cột mốc 300, anh càng thêm trân trọng từng khoảnh khắc bên em. Cảm ơn em đã là người đồng hành cùng anh trong hành trình này...",
+      image: chuoi300
     },
-    {
-      date: "15/05/2024",
-      title: "Giận hờn rồi lại thương…",
-      content: "Những khoảnh khắc giận hờn rồi lại thương...",
-      image: "/assets/makeup-placeholder.jpg"
-    }
   ]);
 
   const [showNewEntryForm, setShowNewEntryForm] = useState(false);

@@ -7,11 +7,11 @@ function LoveLetter() {
         <div className="letter">
           <div className="letter-header">
             <h1>Thư Gửi Người Ấy</h1>
-            <div className="letter-date">28/03/2024</div>
+            <div className="letter-date">14/05/2025</div>
           </div>
           
           <div className="letter-content">
-            <p className="greeting">Hàn Hằng,</p>
+            <p className="greeting">Hàn Hằng thân yêu!</p>
             
             <p>
               Đã hơn 1 năm kể từ khi anh quen em. Ngày 28/03/2024 như một khởi đầu đẹp đẽ mà anh luôn muốn nhắc lại mỗi sáng. Cảm ơn em đã đến bên anh, đã kiên nhẫn, nhẹ nhàng và ấm áp…
@@ -25,10 +25,10 @@ function LoveLetter() {
               Anh mong rằng chúng ta sẽ cùng nhau đi qua những thăng trầm của cuộc sống, chia sẻ niềm vui và nỗi buồn, cùng nhau xây dựng một tương lai tươi đẹp.
             </p>
 
-            <p className="signature">
+            <div className="signature">
               Yêu em nhiều! 💗<br />
-              Han KoonE
-            </p>
+              <div className="signature-name">Han KoonE</div>
+            </div>
           </div>
         </div>
       </div>

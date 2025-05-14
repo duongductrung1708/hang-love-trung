@@ -71,6 +71,24 @@
   font-style: italic;
   margin-top: 2rem;
   color: #ff6b6b;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.signature-name {
+  margin-right: 1.5rem;
+}
+
+.signature br {
+  display: block;
+  content: "";
+  margin-top: 0.5rem;
+}
+
+.signature div {
+  text-align: right;
+  width: fit-content;
 }
 
 @media (max-width: 768px) {
