@@ -1,9 +1,15 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useCallback } from "react";
 import "./SpecialDates.css";
 
 function SpecialDates() {
   const startDate = useMemo(() => new Date("2025-02-06"), []);
   const [daysTogether, setDaysTogether] = useState(0);
+
+  // Function to convert to Vietnam timezone
+  const getVietnamTime = () => {
+    const now = new Date();
+    return new Date(now.getTime() + (7 * 60 * 60 * 1000));
+  };
 
   const specialDates = useMemo(() => [
     {
@@ -55,7 +61,7 @@ function SpecialDates() {
 
   useEffect(() => {
     const calculateDays = () => {
-      const today = new Date();
+      const today = getVietnamTime();
       const diffTime = Math.abs(today - startDate);
       const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
       setDaysTogether(diffDays);
@@ -66,8 +72,8 @@ function SpecialDates() {
     return () => clearInterval(interval);
   }, [startDate]);
 
-  const calculateTimeLeft = (targetDate) => {
-    const now = new Date();
+  const calculateTimeLeft = useCallback((targetDate) => {
+    const now = getVietnamTime();
     const difference = targetDate - now;
     
     if (difference <= 0) {
@@ -85,7 +91,7 @@ function SpecialDates() {
     const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
     return { days, hours, minutes, seconds };
-  };
+  }, []);
 
   const [timeLeft, setTimeLeft] = useState(
     specialDates.reduce((acc, date) => ({
@@ -105,7 +111,7 @@ function SpecialDates() {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [specialDates]);
+  }, [specialDates, calculateTimeLeft]);
 
   return (
     <div className="special-dates">

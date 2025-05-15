@@ -1,44 +1,31 @@
 import { useState, useEffect } from "react";
 import "./Gallery.css";
 
-import hang1 from "../assets/hang1.png";
-import hang2 from "../assets/hang2.png";
-import hang3 from "../assets/hang3.png";
-import hang4 from "../assets/hang4.png";
-import hang5 from "../assets/hang5.png";
-import hang6 from "../assets/hang6.png";
-import hang7 from "../assets/hang7.png";
-import hang8 from "../assets/hang8.png";
-import hang9 from "../assets/hang9.png";
+import hang1 from "../assets/hang1.jpg";
+import hang2 from "../assets/hang2.jpg";
 
 function Gallery() {
   // Dữ liệu mặc định
   const DEFAULT_ALBUMS = [
     {
       id: 1,
-      title: "Ngày đầu gặp nhau",
+      title: "Gửi ngàn nụ hôn đến anh",
       images: [
         hang1,
-        hang2,
-        hang3
       ]
     },
     {
       id: 2,
-      title: "Những lần đi chơi",
+      title: "Đội anh trên đầu",
       images: [
-        hang4,
-        hang5,
-        hang6
+        hang2,
       ]
     },
     {
       id: 3,
       title: "Ảnh ngốc nghếch của hai đứa",
       images: [
-        hang7,
-        hang8,
-        hang9
+        hang1,
       ]
     }
   ];

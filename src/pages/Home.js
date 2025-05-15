@@ -6,15 +6,23 @@ function Home() {
   const [daysTogether, setDaysTogether] = useState(0);
   const startDate = useMemo(() => new Date("2024-03-28"), []);
 
+  // Function to convert to Vietnam timezone
+  const getVietnamTime = () => {
+    const now = new Date();
+    return new Date(now.getTime() + (7 * 60 * 60 * 1000));
+  };
+
   useEffect(() => {
     const calculateDays = () => {
-      const today = new Date();
+      const today = getVietnamTime();
       const diffTime = Math.abs(today - startDate);
       const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
       setDaysTogether(diffDays);
     };
 
     calculateDays();
+    const interval = setInterval(calculateDays, 86400000); // Update every day
+    return () => clearInterval(interval);
   }, [startDate]);
 
   return (
