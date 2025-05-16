@@ -15,47 +15,47 @@ function SpecialDates() {
     () => [
       {
         title: "Kỷ niệm 1 tháng",
-        date: new Date("2025-03-06"),
+        date: new Date("2025-03-05"),
         icon: "🎉",
       },
       {
         title: "Kỷ niệm 100 ngày",
-        date: new Date("2025-05-17"),
+        date: new Date("2025-05-16"),
         icon: "💝",
       },
       {
         title: "Kỷ niệm 6 tháng",
-        date: new Date("2025-08-06"),
+        date: new Date("2025-08-05"),
         icon: "🎊",
       },
       {
         title: "Kỷ niệm 1 năm",
-        date: new Date("2026-02-06"),
+        date: new Date("2026-02-05"),
         icon: "💑",
       },
       {
         title: "Kỷ niệm 1 năm rưỡi",
-        date: new Date("2026-08-06"),
+        date: new Date("2026-08-05"),
         icon: "💖",
       },
       {
         title: "Kỷ niệm 2 năm",
-        date: new Date("2027-02-06"),
+        date: new Date("2027-02-05"),
         icon: "💕",
       },
       {
         title: "Kỷ niệm 2 năm rưỡi",
-        date: new Date("2027-08-06"),
+        date: new Date("2027-08-05"),
         icon: "💗",
       },
       {
         title: "Kỷ niệm 3 năm",
-        date: new Date("2028-02-06"),
+        date: new Date("2028-02-05"),
         icon: "💓",
       },
       {
         title: "Kỷ niệm 3 năm rưỡi",
-        date: new Date("2028-08-06"),
+        date: new Date("2028-08-05"),
         icon: "💘",
       },
     ],
