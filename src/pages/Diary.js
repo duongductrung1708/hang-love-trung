@@ -102,6 +102,10 @@ function Diary() {
     image: "",
   });
 
+  const [loadedImages, setLoadedImages] = useState({});
+
+  const [showResetModal, setShowResetModal] = useState(false);
+
   const handleAddEntry = (e) => {
     e.preventDefault();
     if (!validateDiaryEntry(newEntry)) {
@@ -142,15 +146,17 @@ function Diary() {
   };
 
   const handleReset = () => {
-    if (
-      window.confirm(
-        "Bạn có chắc chắn muốn reset nhật ký về dữ liệu mặc định? Tất cả dữ liệu hiện tại sẽ bị mất!"
-      )
-    ) {
-      setDiaryEntries(DEFAULT_ENTRIES);
-      localStorage.removeItem("diaryEntries");
-      alert("Đã reset nhật ký về dữ liệu mặc định!");
-    }
+    setShowResetModal(true);
+  };
+
+  const confirmReset = () => {
+    setDiaryEntries(DEFAULT_ENTRIES);
+    localStorage.removeItem("diaryEntries");
+    setShowResetModal(false);
+  };
+
+  const cancelReset = () => {
+    setShowResetModal(false);
   };
 
   const formatDate = (dateString) => {
@@ -161,6 +167,13 @@ function Diary() {
   const formatDateForDisplay = (dateString) => {
     const [year, month, day] = dateString.split("-");
     return `${day}/${month}/${year}`;
+  };
+
+  const handleImageLoad = (index) => {
+    setLoadedImages(prev => ({
+      ...prev,
+      [index]: true
+    }));
   };
 
   return (
@@ -304,7 +317,12 @@ function Diary() {
                   <p>{entry.content}</p>
                   {entry.image && (
                     <div className="entry-image">
-                      <img src={entry.image} alt={entry.title} />
+                      <img 
+                        src={entry.image} 
+                        alt={entry.title}
+                        onLoad={() => handleImageLoad(index)}
+                        className={loadedImages[index] ? 'loaded' : ''}
+                      />
                     </div>
                   )}
                 </div>
@@ -313,6 +331,23 @@ function Diary() {
           </div>
         ))}
       </div>
+
+      {showResetModal && (
+        <div className="reset-modal">
+          <div className="reset-modal-content">
+            <h3>Xác Nhận Reset</h3>
+            <p>Bạn có chắc chắn muốn reset nhật ký về dữ liệu mặc định? Tất cả dữ liệu hiện tại sẽ bị mất!</p>
+            <div className="reset-modal-actions">
+              <button className="confirm-reset" onClick={confirmReset}>
+                Xác Nhận Reset
+              </button>
+              <button className="cancel-reset" onClick={cancelReset}>
+                Hủy
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

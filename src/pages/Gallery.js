@@ -45,6 +45,7 @@ function Gallery() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [editingAlbum, setEditingAlbum] = useState(null);
   const [showAddForm, setShowAddForm] = useState(false);
+  const [showResetModal, setShowResetModal] = useState(false);
   const [newAlbum, setNewAlbum] = useState({
     title: "",
     images: [],
@@ -85,16 +86,18 @@ function Gallery() {
   };
 
   const handleReset = () => {
-    if (
-      window.confirm(
-        "Bạn có chắc chắn muốn reset về dữ liệu mặc định? Tất cả dữ liệu hiện tại sẽ bị mất!"
-      )
-    ) {
-      setAlbums(DEFAULT_ALBUMS);
-      localStorage.removeItem("galleryAlbums");
-      setSelectedAlbum(null);
-      alert("Đã reset về dữ liệu mặc định!");
-    }
+    setShowResetModal(true);
+  };
+
+  const confirmReset = () => {
+    setAlbums(DEFAULT_ALBUMS);
+    localStorage.removeItem("galleryAlbums");
+    setSelectedAlbum(null);
+    setShowResetModal(false);
+  };
+
+  const cancelReset = () => {
+    setShowResetModal(false);
   };
 
   const handleAddImage = (albumId, imageUrl) => {
@@ -275,6 +278,23 @@ function Gallery() {
         <div className="lightbox" onClick={closeLightbox}>
           <div className="lightbox-content">
             <img src={selectedImage} alt="Selected" />
+          </div>
+        </div>
+      )}
+
+      {showResetModal && (
+        <div className="reset-modal">
+          <div className="reset-modal-content">
+            <h3>Xác Nhận Reset</h3>
+            <p>Bạn có chắc chắn muốn reset tất cả album về mặc định? Tất cả dữ liệu hiện tại sẽ bị mất!</p>
+            <div className="reset-modal-actions">
+              <button className="confirm-reset" onClick={confirmReset}>
+                Xác Nhận Reset
+              </button>
+              <button className="cancel-reset" onClick={cancelReset}>
+                Hủy
+              </button>
+            </div>
           </div>
         </div>
       )}

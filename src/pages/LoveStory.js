@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import "./LoveStory.css";
 
 import hoahangvatrung from "../assets/hoahangvatrung.jpg";
+import hang1 from "../assets/hang1.jpg";
 
 function LoveStory() {
   const timelineRef = useRef(null);
@@ -19,7 +20,7 @@ function LoveStory() {
       date: "Coming soon",
       title: "Ngày tỏ tình",
       description: "Anh đã nói lời yêu bằng tất cả chân thành.",
-      image: "/assets/confession-placeholder.jpg",
+      image: hang1,
     },
     {
       date: "Coming soon",
@@ -62,6 +63,7 @@ function LoveStory() {
     description: "",
     image: "",
   });
+  const [showResetModal, setShowResetModal] = useState(false);
 
   // Lưu vào localStorage
   useEffect(() => {
@@ -91,15 +93,17 @@ function LoveStory() {
   };
 
   const handleReset = () => {
-    if (
-      window.confirm(
-        "Bạn có chắc chắn muốn reset về dữ liệu mặc định? Tất cả dữ liệu hiện tại sẽ bị mất!"
-      )
-    ) {
-      setTimelineEvents(DEFAULT_EVENTS);
-      localStorage.removeItem("timelineEvents");
-      alert("Đã reset về dữ liệu mặc định!");
-    }
+    setShowResetModal(true);
+  };
+
+  const confirmReset = () => {
+    setTimelineEvents(DEFAULT_EVENTS);
+    localStorage.removeItem("timelineEvents");
+    setShowResetModal(false);
+  };
+
+  const cancelReset = () => {
+    setShowResetModal(false);
   };
 
   // Animation effect
@@ -282,6 +286,23 @@ function LoveStory() {
           </div>
         ))}
       </div>
+
+      {showResetModal && (
+        <div className="reset-modal">
+          <div className="reset-modal-content">
+            <h3>Xác Nhận Reset</h3>
+            <p>Bạn có chắc chắn muốn reset về dữ liệu mặc định? Tất cả dữ liệu hiện tại sẽ bị mất!</p>
+            <div className="reset-modal-actions">
+              <button className="confirm-reset" onClick={confirmReset}>
+                Xác Nhận Reset
+              </button>
+              <button className="cancel-reset" onClick={cancelReset}>
+                Hủy
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
