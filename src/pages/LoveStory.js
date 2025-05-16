@@ -11,33 +11,34 @@ function LoveStory() {
     {
       date: "28/03/2024",
       title: "Ngày quen nhau",
-      description: "Hôm đó tình cờ chúng mình gặp nhau. Ai ngờ từ giây phút ấy, em bước vào đời anh như một điều diệu kỳ…",
-      image: hoahangvatrung
+      description:
+        "Hôm đó tình cờ chúng mình gặp nhau. Ai ngờ từ giây phút ấy, em bước vào đời anh như một điều diệu kỳ…",
+      image: hoahangvatrung,
     },
     {
       date: "Coming soon",
       title: "Ngày tỏ tình",
       description: "Anh đã nói lời yêu bằng tất cả chân thành.",
-      image: "/assets/confession-placeholder.jpg"
+      image: "/assets/confession-placeholder.jpg",
     },
     {
       date: "Coming soon",
       title: "Nụ hôn đầu tiên",
       description: "Khoảnh khắc ngọt ngào nhất...",
-      image: "/assets/first-kiss-placeholder.jpg"
+      image: "/assets/first-kiss-placeholder.jpg",
     },
     {
       date: "Coming soon",
       title: "Lần đầu đi chơi xa",
       description: "Những kỷ niệm đẹp bên nhau...",
-      image: "/assets/trip-placeholder.jpg"
-    }
+      image: "/assets/trip-placeholder.jpg",
+    },
   ];
 
   // Load từ localStorage
   const loadFromLocalStorage = () => {
     try {
-      const savedEvents = localStorage.getItem('timelineEvents');
+      const savedEvents = localStorage.getItem("timelineEvents");
       if (savedEvents) {
         const parsedEvents = JSON.parse(savedEvents);
         if (Array.isArray(parsedEvents)) {
@@ -45,24 +46,26 @@ function LoveStory() {
         }
       }
     } catch (error) {
-      console.error('Lỗi khi đọc dữ liệu:', error);
+      console.error("Lỗi khi đọc dữ liệu:", error);
     }
     return DEFAULT_EVENTS;
   };
 
-  const [timelineEvents, setTimelineEvents] = useState(() => loadFromLocalStorage());
+  const [timelineEvents, setTimelineEvents] = useState(() =>
+    loadFromLocalStorage()
+  );
   const [editingIndex, setEditingIndex] = useState(null);
   const [showAddForm, setShowAddForm] = useState(false);
   const [newEvent, setNewEvent] = useState({
     date: "",
     title: "",
     description: "",
-    image: ""
+    image: "",
   });
 
   // Lưu vào localStorage
   useEffect(() => {
-    localStorage.setItem('timelineEvents', JSON.stringify(timelineEvents));
+    localStorage.setItem("timelineEvents", JSON.stringify(timelineEvents));
   }, [timelineEvents]);
 
   const handleAddEvent = (e) => {
@@ -81,24 +84,28 @@ function LoveStory() {
   };
 
   const handleDeleteEvent = (index) => {
-    if (window.confirm('Bạn có chắc chắn muốn xóa sự kiện này?')) {
+    if (window.confirm("Bạn có chắc chắn muốn xóa sự kiện này?")) {
       const updatedEvents = timelineEvents.filter((_, i) => i !== index);
       setTimelineEvents(updatedEvents);
     }
   };
 
   const handleReset = () => {
-    if (window.confirm('Bạn có chắc chắn muốn reset về dữ liệu mặc định? Tất cả dữ liệu hiện tại sẽ bị mất!')) {
+    if (
+      window.confirm(
+        "Bạn có chắc chắn muốn reset về dữ liệu mặc định? Tất cả dữ liệu hiện tại sẽ bị mất!"
+      )
+    ) {
       setTimelineEvents(DEFAULT_EVENTS);
-      localStorage.removeItem('timelineEvents');
-      alert('Đã reset về dữ liệu mặc định!');
+      localStorage.removeItem("timelineEvents");
+      alert("Đã reset về dữ liệu mặc định!");
     }
   };
 
   // Animation effect
   useEffect(() => {
     const timeline = timelineRef.current;
-    
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -111,7 +118,7 @@ function LoveStory() {
       },
       {
         threshold: 0.1,
-        rootMargin: "0px 0px -100px 0px"
+        rootMargin: "0px 0px -100px 0px",
       }
     );
 
@@ -139,16 +146,10 @@ function LoveStory() {
       <h1>Chuyện Tình Của Chúng Mình</h1>
 
       <div className="story-actions">
-        <button 
-          className="add-event-btn"
-          onClick={() => setShowAddForm(true)}
-        >
+        <button className="add-event-btn" onClick={() => setShowAddForm(true)}>
           Thêm sự kiện mới
         </button>
-        <button 
-          className="reset-btn"
-          onClick={handleReset}
-        >
+        <button className="reset-btn" onClick={handleReset}>
           Reset về mặc định
         </button>
       </div>
@@ -161,28 +162,38 @@ function LoveStory() {
               type="text"
               placeholder="Ngày (DD/MM/YYYY)"
               value={newEvent.date}
-              onChange={(e) => setNewEvent({...newEvent, date: e.target.value})}
+              onChange={(e) =>
+                setNewEvent({ ...newEvent, date: e.target.value })
+              }
             />
             <input
               type="text"
               placeholder="Tiêu đề"
               value={newEvent.title}
-              onChange={(e) => setNewEvent({...newEvent, title: e.target.value})}
+              onChange={(e) =>
+                setNewEvent({ ...newEvent, title: e.target.value })
+              }
             />
             <textarea
               placeholder="Mô tả"
               value={newEvent.description}
-              onChange={(e) => setNewEvent({...newEvent, description: e.target.value})}
+              onChange={(e) =>
+                setNewEvent({ ...newEvent, description: e.target.value })
+              }
             />
             <input
               type="text"
               placeholder="URL ảnh"
               value={newEvent.image}
-              onChange={(e) => setNewEvent({...newEvent, image: e.target.value})}
+              onChange={(e) =>
+                setNewEvent({ ...newEvent, image: e.target.value })
+              }
             />
             <div className="form-buttons">
               <button type="submit">Lưu</button>
-              <button type="button" onClick={() => setShowAddForm(false)}>Hủy</button>
+              <button type="button" onClick={() => setShowAddForm(false)}>
+                Hủy
+              </button>
             </div>
           </form>
         </div>
@@ -246,21 +257,21 @@ function LoveStory() {
               )}
               <div className="timeline-actions">
                 {editingIndex === index ? (
-                  <button 
+                  <button
                     className="save-event-btn"
                     onClick={() => handleSaveEdit(index)}
                   >
                     Lưu
                   </button>
                 ) : (
-                  <button 
+                  <button
                     className="edit-event-btn"
                     onClick={() => handleEditEvent(index)}
                   >
                     Sửa
                   </button>
                 )}
-                <button 
+                <button
                   className="delete-event-btn"
                   onClick={() => handleDeleteEvent(index)}
                 >
@@ -275,4 +286,4 @@ function LoveStory() {
   );
 }
 
-export default LoveStory; 
+export default LoveStory;

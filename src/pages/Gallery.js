@@ -10,30 +10,24 @@ function Gallery() {
     {
       id: 1,
       title: "Gửi ngàn nụ hôn đến anh",
-      images: [
-        hang1,
-      ]
+      images: [hang1],
     },
     {
       id: 2,
       title: "Đội anh trên đầu",
-      images: [
-        hang2,
-      ]
+      images: [hang2],
     },
     {
       id: 3,
       title: "Ảnh ngốc nghếch của hai đứa",
-      images: [
-        hang1,
-      ]
-    }
+      images: [hang1],
+    },
   ];
 
   // Load từ localStorage
   const loadFromLocalStorage = () => {
     try {
-      const savedAlbums = localStorage.getItem('galleryAlbums');
+      const savedAlbums = localStorage.getItem("galleryAlbums");
       if (savedAlbums) {
         const parsedAlbums = JSON.parse(savedAlbums);
         if (Array.isArray(parsedAlbums)) {
@@ -41,7 +35,7 @@ function Gallery() {
         }
       }
     } catch (error) {
-      console.error('Lỗi khi đọc dữ liệu:', error);
+      console.error("Lỗi khi đọc dữ liệu:", error);
     }
     return DEFAULT_ALBUMS;
   };
@@ -53,19 +47,19 @@ function Gallery() {
   const [showAddForm, setShowAddForm] = useState(false);
   const [newAlbum, setNewAlbum] = useState({
     title: "",
-    images: []
+    images: [],
   });
 
   // Lưu vào localStorage
   useEffect(() => {
-    localStorage.setItem('galleryAlbums', JSON.stringify(albums));
+    localStorage.setItem("galleryAlbums", JSON.stringify(albums));
   }, [albums]);
 
   const handleAddAlbum = (e) => {
     e.preventDefault();
     const newAlbumWithId = {
       ...newAlbum,
-      id: Date.now() // Tạo ID duy nhất
+      id: Date.now(), // Tạo ID duy nhất
     };
     setAlbums([...albums, newAlbumWithId]);
     setNewAlbum({ title: "", images: [] });
@@ -81,8 +75,8 @@ function Gallery() {
   };
 
   const handleDeleteAlbum = (albumId) => {
-    if (window.confirm('Bạn có chắc chắn muốn xóa album này?')) {
-      const updatedAlbums = albums.filter(album => album.id !== albumId);
+    if (window.confirm("Bạn có chắc chắn muốn xóa album này?")) {
+      const updatedAlbums = albums.filter((album) => album.id !== albumId);
       setAlbums(updatedAlbums);
       if (selectedAlbum === albumId) {
         setSelectedAlbum(null);
@@ -91,20 +85,24 @@ function Gallery() {
   };
 
   const handleReset = () => {
-    if (window.confirm('Bạn có chắc chắn muốn reset về dữ liệu mặc định? Tất cả dữ liệu hiện tại sẽ bị mất!')) {
+    if (
+      window.confirm(
+        "Bạn có chắc chắn muốn reset về dữ liệu mặc định? Tất cả dữ liệu hiện tại sẽ bị mất!"
+      )
+    ) {
       setAlbums(DEFAULT_ALBUMS);
-      localStorage.removeItem('galleryAlbums');
+      localStorage.removeItem("galleryAlbums");
       setSelectedAlbum(null);
-      alert('Đã reset về dữ liệu mặc định!');
+      alert("Đã reset về dữ liệu mặc định!");
     }
   };
 
   const handleAddImage = (albumId, imageUrl) => {
-    const updatedAlbums = albums.map(album => {
+    const updatedAlbums = albums.map((album) => {
       if (album.id === albumId) {
         return {
           ...album,
-          images: [...album.images, imageUrl]
+          images: [...album.images, imageUrl],
         };
       }
       return album;
@@ -113,12 +111,12 @@ function Gallery() {
   };
 
   const handleDeleteImage = (albumId, imageIndex) => {
-    if (window.confirm('Bạn có chắc chắn muốn xóa ảnh này?')) {
-      const updatedAlbums = albums.map(album => {
+    if (window.confirm("Bạn có chắc chắn muốn xóa ảnh này?")) {
+      const updatedAlbums = albums.map((album) => {
         if (album.id === albumId) {
           return {
             ...album,
-            images: album.images.filter((_, index) => index !== imageIndex)
+            images: album.images.filter((_, index) => index !== imageIndex),
           };
         }
         return album;
@@ -140,16 +138,10 @@ function Gallery() {
       <h1>Album Ảnh</h1>
 
       <div className="gallery-actions">
-        <button 
-          className="add-album-btn"
-          onClick={() => setShowAddForm(true)}
-        >
+        <button className="add-album-btn" onClick={() => setShowAddForm(true)}>
           Thêm album mới
         </button>
-        <button 
-          className="reset-btn"
-          onClick={handleReset}
-        >
+        <button className="reset-btn" onClick={handleReset}>
           Reset về mặc định
         </button>
       </div>
@@ -162,12 +154,16 @@ function Gallery() {
               type="text"
               placeholder="Tên album"
               value={newAlbum.title}
-              onChange={(e) => setNewAlbum({...newAlbum, title: e.target.value})}
+              onChange={(e) =>
+                setNewAlbum({ ...newAlbum, title: e.target.value })
+              }
               maxLength={30}
             />
             <div className="form-buttons">
               <button type="submit">Lưu</button>
-              <button type="button" onClick={() => setShowAddForm(false)}>Hủy</button>
+              <button type="button" onClick={() => setShowAddForm(false)}>
+                Hủy
+              </button>
             </div>
           </form>
         </div>
@@ -185,8 +181,8 @@ function Gallery() {
                 type="text"
                 value={album.title}
                 onChange={(e) => {
-                  const updatedAlbums = albums.map(a => 
-                    a.id === album.id ? {...a, title: e.target.value} : a
+                  const updatedAlbums = albums.map((a) =>
+                    a.id === album.id ? { ...a, title: e.target.value } : a
                   );
                   setAlbums(updatedAlbums);
                 }}
@@ -197,11 +193,14 @@ function Gallery() {
               <h2>{album.title}</h2>
             )}
             <div className="album-preview">
-              <img src={album.images[0] || "/assets/placeholder.png"} alt={album.title} />
+              <img
+                src={album.images[0] || "/assets/placeholder.png"}
+                alt={album.title}
+              />
             </div>
             <div className="album-actions">
               {editingAlbum === album.id ? (
-                <button 
+                <button
                   className="save-album-btn"
                   onClick={(e) => {
                     e.stopPropagation();
@@ -211,7 +210,7 @@ function Gallery() {
                   Lưu
                 </button>
               ) : (
-                <button 
+                <button
                   className="edit-album-btn"
                   onClick={(e) => {
                     e.stopPropagation();
@@ -221,7 +220,7 @@ function Gallery() {
                   Sửa
                 </button>
               )}
-              <button 
+              <button
                 className="delete-album-btn"
                 onClick={(e) => {
                   e.stopPropagation();
@@ -237,35 +236,37 @@ function Gallery() {
 
       {selectedAlbum && (
         <div className="album-view">
-          <h2>{albums.find(a => a.id === selectedAlbum).title}</h2>
+          <h2>{albums.find((a) => a.id === selectedAlbum).title}</h2>
           <div className="add-image-form">
             <input
               type="text"
               placeholder="Thêm URL ảnh mới"
               onKeyPress={(e) => {
-                if (e.key === 'Enter') {
+                if (e.key === "Enter") {
                   handleAddImage(selectedAlbum, e.target.value);
-                  e.target.value = '';
+                  e.target.value = "";
                 }
               }}
             />
           </div>
           <div className="photo-grid">
-            {albums.find(a => a.id === selectedAlbum).images.map((image, index) => (
-              <div key={index} className="photo-item">
-                <img 
-                  src={image} 
-                  alt={`${index + 1}`} 
-                  onClick={() => openLightbox(image)}
-                />
-                <button
-                  className="delete-image-btn"
-                  onClick={() => handleDeleteImage(selectedAlbum, index)}
-                >
-                  Xóa
-                </button>
-              </div>
-            ))}
+            {albums
+              .find((a) => a.id === selectedAlbum)
+              .images.map((image, index) => (
+                <div key={index} className="photo-item">
+                  <img
+                    src={image}
+                    alt={`${index + 1}`}
+                    onClick={() => openLightbox(image)}
+                  />
+                  <button
+                    className="delete-image-btn"
+                    onClick={() => handleDeleteImage(selectedAlbum, index)}
+                  >
+                    Xóa
+                  </button>
+                </div>
+              ))}
           </div>
         </div>
       )}
@@ -281,4 +282,4 @@ function Gallery() {
   );
 }
 
-export default Gallery; 
+export default Gallery;

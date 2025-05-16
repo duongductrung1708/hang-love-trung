@@ -28,7 +28,7 @@
 }
 
 .add-album-btn {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
 }
 
@@ -79,7 +79,7 @@
 }
 
 .form-buttons button[type="submit"] {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
 }
 
@@ -109,7 +109,7 @@
 }
 
 .album.active {
-  border: 2px solid #4CAF50;
+  border: 2px solid #4caf50;
 }
 
 .album h2 {
@@ -165,12 +165,12 @@
 }
 
 .edit-album-btn {
-  background-color: #2196F3;
+  background-color: #2196f3;
   color: white;
 }
 
 .save-album-btn {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
 }
 
@@ -291,4 +291,4 @@
   .photo-item {
     height: 200px;
   }
-} 
+}

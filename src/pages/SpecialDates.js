@@ -8,56 +8,59 @@ function SpecialDates() {
   // Function to convert to Vietnam timezone
   const getVietnamTime = () => {
     const now = new Date();
-    return new Date(now.getTime() + (7 * 60 * 60 * 1000));
+    return new Date(now.getTime() + 7 * 60 * 60 * 1000);
   };
 
-  const specialDates = useMemo(() => [
-    {
-      title: "Kỷ niệm 1 tháng",
-      date: new Date("2025-03-06"),
-      icon: "🎉"
-    },
-    {
-      title: "Kỷ niệm 100 ngày",
-      date: new Date("2025-05-17"),
-      icon: "💝"
-    },
-    {
-      title: "Kỷ niệm 6 tháng",
-      date: new Date("2025-08-06"),
-      icon: "🎊"
-    },
-    {
-      title: "Kỷ niệm 1 năm",
-      date: new Date("2026-02-06"),
-      icon: "💑"
-    },
-    {
-      title: "Kỷ niệm 1 năm rưỡi",
-      date: new Date("2026-08-06"),
-      icon: "💖"
-    },
-    {
-      title: "Kỷ niệm 2 năm",
-      date: new Date("2027-02-06"),
-      icon: "💕"
-    },
-    {
-      title: "Kỷ niệm 2 năm rưỡi",
-      date: new Date("2027-08-06"),
-      icon: "💗"
-    },
-    {
-      title: "Kỷ niệm 3 năm",
-      date: new Date("2028-02-06"),
-      icon: "💓"
-    },
-    {
-      title: "Kỷ niệm 3 năm rưỡi",
-      date: new Date("2028-08-06"),
-      icon: "💘"
-    }
-  ], []);
+  const specialDates = useMemo(
+    () => [
+      {
+        title: "Kỷ niệm 1 tháng",
+        date: new Date("2025-03-06"),
+        icon: "🎉",
+      },
+      {
+        title: "Kỷ niệm 100 ngày",
+        date: new Date("2025-05-17"),
+        icon: "💝",
+      },
+      {
+        title: "Kỷ niệm 6 tháng",
+        date: new Date("2025-08-06"),
+        icon: "🎊",
+      },
+      {
+        title: "Kỷ niệm 1 năm",
+        date: new Date("2026-02-06"),
+        icon: "💑",
+      },
+      {
+        title: "Kỷ niệm 1 năm rưỡi",
+        date: new Date("2026-08-06"),
+        icon: "💖",
+      },
+      {
+        title: "Kỷ niệm 2 năm",
+        date: new Date("2027-02-06"),
+        icon: "💕",
+      },
+      {
+        title: "Kỷ niệm 2 năm rưỡi",
+        date: new Date("2027-08-06"),
+        icon: "💗",
+      },
+      {
+        title: "Kỷ niệm 3 năm",
+        date: new Date("2028-02-06"),
+        icon: "💓",
+      },
+      {
+        title: "Kỷ niệm 3 năm rưỡi",
+        date: new Date("2028-08-06"),
+        icon: "💘",
+      },
+    ],
+    []
+  );
 
   useEffect(() => {
     const calculateDays = () => {
@@ -75,18 +78,20 @@ function SpecialDates() {
   const calculateTimeLeft = useCallback((targetDate) => {
     const now = getVietnamTime();
     const difference = targetDate - now;
-    
+
     if (difference <= 0) {
       return {
         days: 0,
         hours: 0,
         minutes: 0,
-        seconds: 0
+        seconds: 0,
       };
     }
 
     const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const hours = Math.floor(
+      (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    );
     const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
@@ -94,19 +99,25 @@ function SpecialDates() {
   }, []);
 
   const [timeLeft, setTimeLeft] = useState(
-    specialDates.reduce((acc, date) => ({
-      ...acc,
-      [date.title]: calculateTimeLeft(date.date)
-    }), {})
+    specialDates.reduce(
+      (acc, date) => ({
+        ...acc,
+        [date.title]: calculateTimeLeft(date.date),
+      }),
+      {}
+    )
   );
 
   useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft(
-        specialDates.reduce((acc, date) => ({
-          ...acc,
-          [date.title]: calculateTimeLeft(date.date)
-        }), {})
+        specialDates.reduce(
+          (acc, date) => ({
+            ...acc,
+            [date.title]: calculateTimeLeft(date.date),
+          }),
+          {}
+        )
       );
     }, 1000);
 
@@ -137,11 +148,15 @@ function SpecialDates() {
                 <span className="label">Giờ</span>
               </div>
               <div className="time-block">
-                <span className="time">{timeLeft[date.title]?.minutes || 0}</span>
+                <span className="time">
+                  {timeLeft[date.title]?.minutes || 0}
+                </span>
                 <span className="label">Phút</span>
               </div>
               <div className="time-block">
-                <span className="time">{timeLeft[date.title]?.seconds || 0}</span>
+                <span className="time">
+                  {timeLeft[date.title]?.seconds || 0}
+                </span>
                 <span className="label">Giây</span>
               </div>
             </div>
@@ -152,4 +167,4 @@ function SpecialDates() {
   );
 }
 
-export default SpecialDates; 
+export default SpecialDates;

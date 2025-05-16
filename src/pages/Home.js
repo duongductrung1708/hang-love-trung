@@ -9,7 +9,7 @@ function Home() {
   // Function to convert to Vietnam timezone
   const getVietnamTime = () => {
     const now = new Date();
-    return new Date(now.getTime() + (7 * 60 * 60 * 1000));
+    return new Date(now.getTime() + 7 * 60 * 60 * 1000);
   };
 
   useEffect(() => {
@@ -34,7 +34,8 @@ function Home() {
         <div className="introduction">
           <h1>Chuyện Của Chúng Mình</h1>
           <p className="love-quote">
-            "Kể từ ngày 28/03/2024, thế giới của anh có thêm một điều kỳ diệu mang tên em..."
+            "Kể từ ngày 28/03/2024, thế giới của anh có thêm một điều kỳ diệu
+            mang tên em..."
           </p>
           <div className="days-counter">
             <h2>Đã bên nhau được:</h2>
@@ -46,4 +47,4 @@ function Home() {
   );
 }
 
-export default Home; 
+export default Home;
