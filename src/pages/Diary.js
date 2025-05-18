@@ -6,6 +6,9 @@ import chuoi300 from "../assets/chuoi300.jpg";
 import vongtay from "../assets/vongtay.jpg";
 import vi from "../assets/vi.jpg";
 import kyniem100 from "../assets/100days.png";
+import bb3 from "../assets/bb3.jpeg";
+import bb3dog from "../assets/bb3+dog.jpg";
+import bb3dogbox from "../assets/bb3+dog+box.jpg";
 
 // Dữ liệu mặc định được tách ra thành biến riêng
 const DEFAULT_ENTRIES = [
@@ -43,6 +46,49 @@ const DEFAULT_ENTRIES = [
     content:
       "Hôm nay là ngày kỷ niệm 100 ngày yêu nhau của chúng ta. 100 ngày không phải là quá dài, nhưng mỗi ngày đều là những kỷ niệm đáng nhớ. Từ những cuộc trò chuyện đầu tiên, những nụ cười ngượng ngùng, đến những khoảnh khắc hạnh phúc bên nhau. Mỗi ngày trôi qua, tình cảm của chúng ta lại càng thêm sâu đậm. Cảm ơn em đã là người đồng hành cùng anh trong 100 ngày qua, và anh mong rằng chúng ta sẽ cùng nhau đi qua thật nhiều ngày hạnh phúc phía trước. Yêu em nhiều lắm!",
     image: kyniem100,
+  },
+  {
+    date: "08/03/2025",
+    title: "Món quà babythree đầu tiên",
+    content: `Hôm nay là 8/3 – ngày của con gái, của những người phụ nữ.
+Và em – một cô gái bé nhỏ của anh – đã được nhận món quà đầu tiên mà anh gọi là "babythree".
+Khi em mở hộp quà, thấy con gấu nhỏ nằm gọn bên trong, em đã bật cười... rồi bật khóc.
+Không phải vì món quà to lớn gì đâu, mà vì em thấy được cả trái tim anh trong đó.
+Em tưởng tượng anh ngồi chọn từng con, nghĩ xem con nào sẽ khiến em vui, con nào giống tính em nhất...
+Dù mình cách nhau cả trăm cây số, nhưng em vẫn thấy anh ở rất gần.
+Gần như cảm giác khi em ôm con gấu ấy vào lòng, nhắm mắt lại – là có thể mơ thấy anh.
+Cảm ơn anh vì đã không để khoảng cách làm em buồn.
+Cảm ơn vì đã luôn làm em thấy mình được yêu – dẫu xa thật xa. 🧸💌`,
+    image: bb3,
+  },
+  {
+    date: "10/05/2025",
+    title: "Con gấu thứ hai",
+    content: `Gấu thứ hai đến vào một chiều tháng 5 nắng gắt.
+Em mở hộp, nhìn thấy nó nằm đó, làm lòng em thấy dịu hơn bao giờ hết.
+Em đặt nó cạnh con gấu đầu tiên. Hai đứa giờ nằm trên cạnh giường ngủ em, như hai nhân chứng thầm lặng của một chuyện tình xa xôi mà ấm áp.
+Người ta bảo: yêu xa khó lắm.
+Nhưng em thấy, chỉ cần một người đủ kiên trì gửi đi những món quà nhỏ, và một người đủ dịu dàng chờ đợi – thì xa bao nhiêu cũng hóa gần.
+Em không cần quà gì to tát đâu, chỉ cần có "dấu vết của anh" trong từng món nhỏ như thế, là đủ để em chờ anh thêm từng ngày.
+Nhớ anh. Và ôm gấu – thay vì ôm anh. 🐻💭`,
+    image: bb3dog,
+  },
+  {
+    date: "16/05/2025",
+    title: "Món quà “100 ngày bên nhau”",
+    content: `Hôm nay tròn 100 ngày mình yêu nhau.
+Em không đếm từng ngày, nhưng món quà bất ngờ anh gửi tới đã nhắc em nhớ… tụi mình đã đi cùng nhau một đoạn đường nhỏ, mà thật nhiều yêu thương.
+
+Trong hộp quà là những thứ nhỏ nhắn đến dễ thương: lược, dây buộc tóc, kẹp tóc, tất, và cả túi sưởi dành cho “những ngày em khó chịu”.
+Em mở từng món ra, tim cứ mềm đi từng chút một.
+Anh không ở gần, nhưng vẫn luôn để ý đến những điều nhỏ bé mà em hay chẳng để tâm.
+
+Có người từng bảo: yêu xa là thiếu thốn.
+Nhưng em thấy, nếu một người thật lòng quan tâm, thì khoảng cách không làm mối quan hệ thiếu gì cả – ngược lại, nó khiến từng điều nhỏ xíu cũng trở thành món quà to lớn.
+
+100 ngày rồi, và em vẫn thấy mình thật may mắn vì được là "cô gái của anh".
+Cảm ơn anh – vì đã luôn chọn cách yêu em một cách dịu dàng như thế. 💝`,
+    image: bb3dogbox,
   },
 ];
 
@@ -170,9 +216,9 @@ function Diary() {
   };
 
   const handleImageLoad = (index) => {
-    setLoadedImages(prev => ({
+    setLoadedImages((prev) => ({
       ...prev,
-      [index]: true
+      [index]: true,
     }));
   };
 
@@ -317,11 +363,11 @@ function Diary() {
                   <p>{entry.content}</p>
                   {entry.image && (
                     <div className="entry-image">
-                      <img 
-                        src={entry.image} 
+                      <img
+                        src={entry.image}
                         alt={entry.title}
                         onLoad={() => handleImageLoad(index)}
-                        className={loadedImages[index] ? 'loaded' : ''}
+                        className={loadedImages[index] ? "loaded" : ""}
                       />
                     </div>
                   )}
@@ -336,7 +382,10 @@ function Diary() {
         <div className="reset-modal">
           <div className="reset-modal-content">
             <h3>Xác Nhận Reset</h3>
-            <p>Bạn có chắc chắn muốn reset nhật ký về dữ liệu mặc định? Tất cả dữ liệu hiện tại sẽ bị mất!</p>
+            <p>
+              Bạn có chắc chắn muốn reset nhật ký về dữ liệu mặc định? Tất cả dữ
+              liệu hiện tại sẽ bị mất!
+            </p>
             <div className="reset-modal-actions">
               <button className="confirm-reset" onClick={confirmReset}>
                 Xác Nhận Reset
