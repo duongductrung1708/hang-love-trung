@@ -29,6 +29,7 @@ function Navbar() {
           <Link to="/love-letter" onClick={closeMenu}>Thư Tình</Link>
           <Link to="/gallery" onClick={closeMenu}>Album Ảnh</Link>
           <Link to="/special-dates" onClick={closeMenu}>Ngày Đặc Biệt</Link>
+          <Link to="https://flower-hang.vercel.app/" onClick={closeMenu}>Đính Kèm</Link>
         </div>
       </nav>
       <div className={`overlay ${isMenuOpen ? "active" : ""}`} onClick={closeMenu} />
