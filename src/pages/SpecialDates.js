@@ -2,7 +2,7 @@ import { useEffect, useState, useMemo, useCallback } from "react";
 import "./SpecialDates.css";
 
 function SpecialDates() {
-  const startDate = useMemo(() => new Date("2025-02-06"), []);
+  const startDate = useMemo(() => new Date("2025-01-01"), []);
   const [daysTogether, setDaysTogether] = useState(0);
 
   // Function to convert to Vietnam timezone
@@ -15,47 +15,47 @@ function SpecialDates() {
     () => [
       {
         title: "Kỷ niệm 1 tháng",
-        date: new Date("2025-03-05"),
+        date: new Date("2025-02-01"),
         icon: "🎉",
       },
       {
         title: "Kỷ niệm 100 ngày",
-        date: new Date("2025-05-16"),
+        date: new Date("2025-04-11"),
         icon: "💝",
       },
       {
         title: "Kỷ niệm 6 tháng",
-        date: new Date("2025-08-05"),
+        date: new Date("2025-07-01"),
         icon: "🎊",
       },
       {
         title: "Kỷ niệm 1 năm",
-        date: new Date("2026-02-05"),
+        date: new Date("2026-01-01"),
         icon: "💑",
       },
       {
         title: "Kỷ niệm 1 năm rưỡi",
-        date: new Date("2026-08-05"),
+        date: new Date("2026-07-01"),
         icon: "💖",
       },
       {
         title: "Kỷ niệm 2 năm",
-        date: new Date("2027-02-05"),
+        date: new Date("2027-01-01"),
         icon: "💕",
       },
       {
         title: "Kỷ niệm 2 năm rưỡi",
-        date: new Date("2027-08-05"),
+        date: new Date("2027-07-01"),
         icon: "💗",
       },
       {
         title: "Kỷ niệm 3 năm",
-        date: new Date("2028-02-05"),
+        date: new Date("2028-01-01"),
         icon: "💓",
       },
       {
         title: "Kỷ niệm 3 năm rưỡi",
-        date: new Date("2028-08-05"),
+        date: new Date("2028-07-01"),
         icon: "💘",
       },
     ],

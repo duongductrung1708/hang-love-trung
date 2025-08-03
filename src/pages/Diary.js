@@ -149,6 +149,7 @@ function Diary() {
   });
 
   const [loadedImages, setLoadedImages] = useState({});
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const [showResetModal, setShowResetModal] = useState(false);
 
@@ -161,6 +162,14 @@ function Diary() {
     setDiaryEntries([...diaryEntries, newEntry]);
     setNewEntry({ date: "", title: "", content: "", image: "" });
     setShowNewEntryForm(false);
+  };
+
+  const openLightbox = (image) => {
+    setSelectedImage(image);
+  };
+
+  const closeLightbox = () => {
+    setSelectedImage(null);
   };
 
   const handleInlineEdit = (index) => {
@@ -368,6 +377,7 @@ function Diary() {
                         alt={entry.title}
                         onLoad={() => handleImageLoad(index)}
                         className={loadedImages[index] ? "loaded" : ""}
+                        onClick={() => openLightbox(entry.image)}
                       />
                     </div>
                   )}
@@ -395,6 +405,12 @@ function Diary() {
               </button>
             </div>
           </div>
+        </div>
+      )}
+
+      {selectedImage && (
+        <div className="lightbox-overlay" onClick={closeLightbox}>
+          <img src={selectedImage} alt="Lightbox" />
         </div>
       )}
     </div>

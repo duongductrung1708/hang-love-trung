@@ -3,6 +3,12 @@ import "./LoveStory.css";
 
 import hoahangvatrung from "../assets/hoahangvatrung.jpg";
 import hang1 from "../assets/hang1.jpg";
+import photobooth from "../assets/chup-photobooth.jpg";
+import uongnuoc from "../assets/uong-nuoc.jpg";
+import namtay from "../assets/cai-nam-tay.jpg";
+import nuhon from "../assets/nu-hon.jpg";
+import trip from "../assets/di-bao-tang.jpg";
+import bonglung from "../assets/bong-lung.jpg";
 
 function LoveStory() {
   const timelineRef = useRef(null);
@@ -17,22 +23,46 @@ function LoveStory() {
       image: hoahangvatrung,
     },
     {
-      date: "Coming soon",
+      date: "01/01/2025",
       title: "Ngày tỏ tình",
       description: "Anh đã nói lời yêu bằng tất cả chân thành.",
       image: hang1,
     },
     {
-      date: "Coming soon",
-      title: "Nụ hôn đầu tiên",
-      description: "Khoảnh khắc ngọt ngào nhất...",
-      image: "/assets/first-kiss-placeholder.jpg",
+      date: "28/06/2025",
+      title: "Cuộc gặp gỡ đầu tiên",
+      description: "Lần đầu tiên chúng mình gặp nhau ngoài đời thật. Tim đập nhanh, bàn tay run rẩy, và những câu nói ngập ngừng. Khoảnh khắc ấy đã thay đổi cuộc đời chúng mình mãi mãi...",
+      image: bonglung,
     },
     {
-      date: "Coming soon",
+      date: "28/06/2025",
+      title: "Cái nắm tay đầu tiên",
+      description: "Khoảnh khắc ngọt ngào nhất...",
+      image: namtay,
+    },
+    {
+      date: "28/06/2025",
+      title: "Cùng nhau đi uống nước",
+      description: "Ngồi bên nhau, nhìn nhau, và cảm nhận sự ấm áp của tình yêu. Những câu chuyện nhỏ nhặt trở nên ý nghĩa khi có em bên cạnh...",
+      image: uongnuoc,
+    },
+    {
+      date: "28/06/2025",
+      title: "Lần đầu chụp photobooth",
+      description: "Những khoảnh khắc hồn nhiên, những nụ cười tự nhiên nhất. Photobooth đã lưu giữ những kỷ niệm đẹp nhất của chúng mình...",
+      image: photobooth,
+    },
+    {
+      date: "28/06/2025",
+      title: "Nụ hôn đầu tiên",
+      description: "Nụ hôn ngọt ngào nhất, đánh dấu sự khởi đầu của một tình yêu đẹp. Khoảnh khắc ấy như dừng lại thời gian...",
+      image: nuhon,
+    },
+    {
+      date: "02/07/2025",
       title: "Lần đầu đi chơi xa",
-      description: "Những kỷ niệm đẹp bên nhau...",
-      image: "/assets/trip-placeholder.jpg",
+      description: "Chuyến đi đầu tiên cùng nhau, khám phá những nơi mới, tạo ra những kỷ niệm không thể nào quên. Mỗi bước đi đều có em bên cạnh...",
+      image: trip,
     },
   ];
 
@@ -57,6 +87,7 @@ function LoveStory() {
   );
   const [editingIndex, setEditingIndex] = useState(null);
   const [showAddForm, setShowAddForm] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
   const [newEvent, setNewEvent] = useState({
     date: "",
     title: "",
@@ -75,6 +106,14 @@ function LoveStory() {
     setTimelineEvents([...timelineEvents, newEvent]);
     setNewEvent({ date: "", title: "", description: "", image: "" });
     setShowAddForm(false);
+  };
+
+  const openLightbox = (image) => {
+    setSelectedImage(image);
+  };
+
+  const closeLightbox = () => {
+    setSelectedImage(null);
   };
 
   const handleEditEvent = (index) => {
@@ -255,7 +294,11 @@ function LoveStory() {
                   <h2>{event.title}</h2>
                   <p>{event.description}</p>
                   <div className="timeline-image">
-                    <img src={event.image} alt={event.title} />
+                    <img 
+                      src={event.image} 
+                      alt={event.title} 
+                      onClick={() => openLightbox(event.image)}
+                    />
                   </div>
                 </>
               )}
@@ -286,6 +329,12 @@ function LoveStory() {
           </div>
         ))}
       </div>
+
+      {selectedImage && (
+        <div className="lightbox-overlay" onClick={closeLightbox}>
+          <img src={selectedImage} alt="Lightbox" />
+        </div>
+      )}
 
       {showResetModal && (
         <div className="reset-modal">
